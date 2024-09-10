@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\BaseController;
 use app\model\Node;
+use app\Request;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\DbException;
 use think\db\exception\ModelNotFoundException;
@@ -32,9 +33,28 @@ class Api extends BaseController
                 } else {
                     $item->status = "offline";
                 }
+                unset($item["user"]);
+                unset($item["pass"]);
                 $result[$key] = $item;
             }
             return jb(data: $result);
         }
+    }
+    public function getNodeDetail(Request$request, $id): Json
+    {
+        $result = (new Node)->where('id', $id)->findOrEmpty();
+        if ($result->isEmpty()) {
+            return jb(404, "节点不存在");
+        }
+        $res = request("get", "/api/serverinfo", $result);
+        if ($res->status) {
+            $result->status = "online";
+            $result = array_merge($result->toArray(), $res->data);
+            unset($result["user"]);
+            unset($result["pass"]);
+        } else {
+            $result->status = "offline";
+        }
+        return jb(data: $result);
     }
 }

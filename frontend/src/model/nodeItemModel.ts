@@ -1,0 +1,30 @@
+export interface NodeItemModel {
+    id?: number,
+    name?: string,
+    host?: string,
+    port?: number,
+    ssl?: string,
+    user?: string,
+    pass?: string,
+    create?: string,
+    update?: string,
+    status?: string,
+    version?: string,
+    bindPort?: number,
+    vhostHTTPPort?: number,
+    vhostHTTPSPort?: number,
+    tcpmuxHTTPConnectPort?: number,
+    kcpBindPort?: number,
+    quicBindPort?: number,
+    subdomainHost?: string,
+    maxPoolCount?: number,
+    maxPortsPerClient?: number,
+    heartbeatTimeout?: number,
+    totalTrafficIn?: number,
+    totalTrafficOut?: number,
+    curConns?: number,
+    clientCounts?: number,
+    proxyTypeCount?: {
+        tcp?: number
+    }
+}

@@ -13,7 +13,7 @@ use WpOrg\Requests\Requests;
  * @param int|string|null $token 登录token
  * @return Json
  */
-function jb(int $code = 200, string $msg = "", mixed $data = null, int $count = null, int|string $token = null): Json {
+function jb(int $code = 200, string $msg = "请求成功", mixed $data = null, int $count = null, int|string $token = null): Json {
     return json(["code" => $code, "msg" => $msg, "data" => $data, "count" => $count, "token" => $token]);
 }
 function returnData(bool $status = true, string $msg = "", mixed $data = null): stdClass {

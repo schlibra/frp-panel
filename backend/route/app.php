@@ -12,3 +12,9 @@
 use think\facade\Route;
 
 Route::get("/api/nodeList", "Api/getNodeList");
+Route::get("/api/nodeDetail/:id", "Api/getNodeDetail");
+
+Route::get("/", "Index");
+Route::get("/nodeList", "Index");
+
+Route::get("/assets/:file", "Index/assets");
