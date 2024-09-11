@@ -1,6 +1,8 @@
 export interface ProxyItemModel {
     user?: string,
     name?: string,
+    nodeId?: number,
+    nodeName?: string,
     conf?: {
         name?: string,
         type?: string,

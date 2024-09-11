@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import {useRoute} from "vue-router";
 import {computed, onMounted, type Ref, ref} from "vue";
 import {request} from "@/lib/request";
 import type {ProxyItemModel} from "@/model/proxyItemModel";
 import type {ProxyResponseModel} from "@/model/proxyResponseModel";
 import {useNodeStore} from "@/stores/useNodeStore";
-import {goto} from "@/lib/gotoLib";
 import type {NodeItemModel} from "@/model/nodeItemModel";
 
-const route = useRoute()
 const nodeStore = useNodeStore()
-const nodeDetail = computed(()=>nodeStore.nodeList.filter(item=>item.id===selectedId.value)[0])
 const proxy: Ref<ProxyItemModel[]> = ref([])
 const users: Ref<any[]> = ref([])
 const nodeFilter = computed(()=>nodeStore.nodeList.map(item=>{
@@ -44,10 +40,6 @@ function getList() {
     }
   })
 }
-function queryNode(id: number) {
-  let result = nodeStore.nodeList.map(item=>item.id===id)
-  return result.length ? result[0] : {}
-}
 </script>
 
 <template>
@@ -64,7 +56,7 @@ function queryNode(id: number) {
             <el-text v-else>-</el-text>
           </template>
         </el-table-column>
-        <el-table-column label="映射节点" prop="nodeId" :filters="nodeFilter" :filter-method="(nodeId: int, row: NodeItemModel)=>row.nodeId===nodeId">
+        <el-table-column label="映射节点" prop="nodeId" :filters="nodeFilter" :filter-method="(nodeId: number, row: ProxyItemModel)=>row.nodeId===nodeId">
           <template #default="{ row }">
             <el-text>{{ row.nodeName }}</el-text>
           </template>
