@@ -23,5 +23,8 @@ export const goto = {
     },
     proxyList(id: number, type: string) {
         jump(`/node/${id}/${type}`)
+    },
+    proxyAll() {
+        jump("/node/all")
     }
 }

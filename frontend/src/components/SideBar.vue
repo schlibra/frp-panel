@@ -112,7 +112,7 @@ function gotoProxy(type: string) {
         <span>SUDP映射</span>
       </el-menu-item>
     </el-sub-menu>
-    <el-menu-item index="5">
+    <el-menu-item index="5" @click="goto.proxyAll">
       <el-icon><Grid /></el-icon>
       <span>全部映射</span>
     </el-menu-item>
