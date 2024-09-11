@@ -4,7 +4,6 @@ import {request} from "@/lib/request";
 import type {ProxyItemModel} from "@/model/proxyItemModel";
 import type {ProxyResponseModel} from "@/model/proxyResponseModel";
 import {useNodeStore} from "@/stores/useNodeStore";
-import type {NodeItemModel} from "@/model/nodeItemModel";
 
 const nodeStore = useNodeStore()
 const proxy: Ref<ProxyItemModel[]> = ref([])
