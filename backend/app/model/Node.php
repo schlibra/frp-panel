@@ -15,6 +15,7 @@ class Node extends Model
         "name" => "string",
         "host" => "string",
         "port" => "int",
+        "enable" => "string",
         "ssl" => "string",
         "user" => "string",
         "pass" => "string",

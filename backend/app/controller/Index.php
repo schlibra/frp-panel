@@ -13,7 +13,15 @@ class Index extends BaseController
         return response($html);
     }
     public function assets(Request$request): Response {
-        $file = file_get_contents(root_path()."view/dist".$request->url());
-        return response($file)->contentType("application/javascript");
+        $path = $request->url();
+        $file = file_get_contents(root_path()."view/dist".$path);
+        $type = "";
+        if (str_ends_with($path, ".css")){
+            $type = "text/css";
+        }
+        if (str_ends_with($path, ".js")) {
+            $type = "application/javascript";
+        }
+        return response($file)->contentType($type);
     }
 }

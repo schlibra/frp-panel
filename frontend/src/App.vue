@@ -2,7 +2,14 @@
 import { RouterView } from 'vue-router'
 import TopBar from "@/components/TopBar.vue";
 import SideBar from "@/components/SideBar.vue";
-
+import {onMounted} from "vue";
+import {useNodeStore} from "@/stores/useNodeStore";
+const nodeStore = useNodeStore()
+onMounted(() => {
+  nodeStore.getNodeList().then(()=>{
+    console.log(nodeStore.nodeList)
+  })
+})
 </script>
 
 <template>

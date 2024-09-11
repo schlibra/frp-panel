@@ -16,8 +16,10 @@
     "@rushstack/eslint-patch": "^1.10.4",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
+    "echarts": "^5.5.1",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.28.0",
+    "humanize-plus": "^1.8.2",
     "pinia": "^2.1.7",
     "prettier": "^3.3.3",
     "sass": "^1.78.0",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
+    "@types/humanize-plus": "^1.8.2",
     "@types/node": "^20.14.5",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/language-server": "^2.1.6",

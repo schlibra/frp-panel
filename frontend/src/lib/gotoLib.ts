@@ -9,13 +9,19 @@ function jump(url: string) {
 }
 
 export const goto = {
+    reload() {
+      location.reload()
+    },
     home() {
         jump("/")
     },
     nodeList() {
-        jump("/nodeList")
+        jump("/node")
     },
     nodeDetail(id: number) {
-        jump(   `/nodeDetail/${id}`)
+        jump(`/node/${id}`)
+    },
+    proxyList(id: number, type: string) {
+        jump(`/node/${id}/${type}`)
     }
 }

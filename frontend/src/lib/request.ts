@@ -7,7 +7,10 @@ export const request = {
     getNodeList(callback: AxiosCallbackModel) {
         Axios.get(api.common.nodeList, [], callback)
     },
-    getNodeDetail(id: number, callback: AxiosCallbackModel) {
-        Axios.get(`${api.common.nodeDetail}/${id}`, [], callback)
+    getProxy(id: number, type: string, callback: AxiosCallbackModel) {
+        Axios.get(api.common.proxyList(id, type), [], callback)
+    },
+    getAllProxy(callback: AxiosCallbackModel) {
+        Axios.get(api.common.proxyAll, [], callback)
     }
 }

@@ -26,12 +26,27 @@ class Api extends BaseController
         } else {
             foreach ($result as $key => $value) {
                 $item = $result[$key];
-                $data = request("get", "/api/serverinfo", $item);
-                if ($data->status) {
-                    $item->status = "online";
-                    $item = array_merge($item->toArray(), $data->data);
+                if ($item->enable === "Y") {
+                    $data = request("get", "/api/serverinfo", $item);
+                    if ($data->status) {
+                        $item->status = "online";
+                        $item = array_merge($item->toArray(), $data->data);
+                        $all = 0;
+                        foreach (["http", "https", "stcp", "sudp", "tcp", "tcpmux", "udp"] as $type) {
+                            if (isset($item["proxyTypeCount"][$type])) {
+                                $all += $item["proxyTypeCount"][$type];
+                            } else {
+                                $item["proxyTypeCount"][$type] = 0;
+                            }
+                        }
+                        $item["proxyTypeCount"]["all"] = $all;
+                    } else {
+                        $item->status = "offline";
+                        $item["proxyTypeCount"] = [];
+                    }
                 } else {
-                    $item->status = "offline";
+                    $item->status = "disabled";
+                    $item["proxyTypeCount"] = [];
                 }
                 unset($item["user"]);
                 unset($item["pass"]);
@@ -40,21 +55,57 @@ class Api extends BaseController
             return jb(data: $result);
         }
     }
-    public function getNodeDetail(Request$request, $id): Json
-    {
-        $result = (new Node)->where('id', $id)->findOrEmpty();
+    public function getProxyList($id, $type): Json {
+        $result = (new Node)->where("id", $id)->findOrEmpty();
         if ($result->isEmpty()) {
             return jb(404, "节点不存在");
-        }
-        $res = request("get", "/api/serverinfo", $result);
-        if ($res->status) {
-            $result->status = "online";
-            $result = array_merge($result->toArray(), $res->data);
-            unset($result["user"]);
-            unset($result["pass"]);
         } else {
-            $result->status = "offline";
+            $data = request("get", "/api/proxy/$type", $result);
+            if ($data->status) {
+                $data = $data->data["proxies"];
+                $user = [];
+                foreach ($data as &$item) {
+                    $_ = explode(".", $item["name"]);
+                    $_user = $_[0];
+                    $item["name"] = $_[1];
+                    $item["user"] = $_user;
+                    $user[$_user] = "";
+                }
+                return jb(data: [
+                    "data" => $data,
+                    "user" => array_keys($user)
+                ]);
+            } else {
+                return jb(500, $data->msg);
+            }
         }
-        return jb(data: $result);
+    }
+    public function getAllProxy() {
+        $result = (new Node)->select();
+        $list = [];
+        $user = [];
+        foreach ($result as $item) {
+            if ($item->enable === "Y") {
+                foreach (["tcp", "udp", "http", "https", "tcpmux", "stcp", "sudp"] as $type) {
+                    $data = request("get", "/api/proxy/$type", $item);
+                    if ($data->status) {
+                        $data = $data->data["proxies"];
+                        foreach ($data as $_item) {
+                            $_ = explode(".", $_item["name"]);
+                            $_item["user"] = $_[0];
+                            $user[$_[0]] = "";
+                            $_item["name"] = $_[1];
+                            $_item["nodeId"] = $item->id;
+                            $_item["nodeName"] = $item->name;
+                            $list[] = $_item;
+                        }
+                    }
+                }
+            }
+        }
+        return jb(data: [
+            "data" => $list,
+            "user" => array_keys($user)
+        ]);
     }
 }

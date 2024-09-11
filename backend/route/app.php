@@ -11,10 +11,13 @@
 
 use think\facade\Route;
 
-Route::get("/api/nodeList", "Api/getNodeList");
-Route::get("/api/nodeDetail/:id", "Api/getNodeDetail");
+Route::get("/api/node/all", "Api/getAllProxy");
+Route::get("/api/node/:id/:type", "Api/getProxyList");
+Route::get("/api/node", "Api/getNodeList");
 
 Route::get("/", "Index");
-Route::get("/nodeList", "Index");
+Route::get("/node", "Index");
+Route::get("/node/:id", "Index");
+Route::get("/node/:id/:type", "Index");
 
 Route::get("/assets/:file", "Index/assets");

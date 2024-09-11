@@ -3,6 +3,7 @@ export interface NodeItemModel {
     name?: string,
     host?: string,
     port?: number,
+    enable?: string,
     ssl?: string,
     user?: string,
     pass?: string,
@@ -24,7 +25,14 @@ export interface NodeItemModel {
     totalTrafficOut?: number,
     curConns?: number,
     clientCounts?: number,
-    proxyTypeCount?: {
-        tcp?: number
+    proxyTypeCount: {
+        "http"?: number,
+        "https"?: number,
+        "stcp"?: number,
+        "sudp"?: number,
+        "tcp"?: number,
+        "tcpmux"?: number,
+        "udp"?: number,
+        "all"?: number,
     }
 }
