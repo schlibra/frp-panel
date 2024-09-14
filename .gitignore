@@ -14,7 +14,6 @@ dist-ssr
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
@@ -35,3 +34,4 @@ Thumbs.db
 /.settings
 /.buildpath
 /.project
+frontend/.vscode
