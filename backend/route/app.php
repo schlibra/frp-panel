@@ -11,6 +11,8 @@
 
 use think\facade\Route;
 
+use app\controller\Api;
+
 Route::get("/api/node/all", "Api/getAllProxy");
 Route::get("/api/node/:id/:type", "Api/getProxyList");
 Route::get("/api/node", "Api/getNodeList");

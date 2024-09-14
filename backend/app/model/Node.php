@@ -7,6 +7,7 @@ use think\Model;
 
 /**
  * @mixin Model
+ * @property mixed $name
  */
 class Node extends Model
 {
