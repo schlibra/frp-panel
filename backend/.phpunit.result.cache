@@ -1,0 +1,1 @@
+{"version":1,"defects":{"app\\controller\\ApiTest::testServerAuth":5},"times":{"app\\controller\\ApiTest::testIndex":0.049,"app\\controller\\ApiTest::testAssets":0.006,"app\\controller\\ApiTest::testGetProxyList":0.168,"app\\controller\\ApiTest::testGetNodeList":0.18,"app\\controller\\ApiTest::testGetAllProxy":0.872,"app\\controller\\ApiTest::testServerAuth":0.117}}

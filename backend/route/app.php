@@ -16,6 +16,7 @@ use app\controller\Api;
 Route::get("/api/node/all", "Api/getAllProxy");
 Route::get("/api/node/:id/:type", "Api/getProxyList");
 Route::get("/api/node", "Api/getNodeList");
+Route::post("/api/auth", "Api/serverAuth");
 
 Route::get("/", "Index");
 Route::get("/node", "Index");

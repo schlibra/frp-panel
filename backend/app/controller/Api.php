@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\BaseController;
 use app\model\Node;
+use app\Request;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\DbException;
 use think\db\exception\ModelNotFoundException;
@@ -142,5 +143,13 @@ class Api extends BaseController
             return jb(500, "获取代理列表失败: " . $e->getMessage());
         }
     }
-
+    public function serverAuth(Request $request): Json{
+        $username = $request->post("username");
+        $secret = $request->post("secret");
+        if ($username === "test" && $secret === "test") {
+            return jb(200, "验证成功");
+        } else {
+            return jb(401, "验证失败");
+        }
+    }
 }

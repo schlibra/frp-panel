@@ -10,6 +10,7 @@ import ProxyTCPMUX from "@/views/ProxyTCPMUX.vue";
 import ProxySTCP from "@/views/ProxySTCP.vue";
 import ProxySUDP from "@/views/ProxySUDP.vue";
 import ProxyAll from "@/views/ProxyAll.vue";
+import LoginView from "@/views/Account/LoginView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -79,6 +80,12 @@ const router = createRouter({
       name: 'proxySudp',
       component: ProxySUDP,
       meta: { title: 'SUDP映射列表' }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: LoginView,
+      meta: { title: '登录' }
     }
   ]
 })

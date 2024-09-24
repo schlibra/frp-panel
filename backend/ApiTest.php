@@ -54,4 +54,11 @@ class ApiTest extends TestCase
         }
     }
 
+    public function testServerAuth() {
+        $request = new Request();
+        $request->post(['username' => 'test', 'password' => 'test']);
+        $response = $this->api->serverAuth($request);
+        $data = $response->getData();
+        var_dump($data);
+    }
 }
