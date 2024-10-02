@@ -2,5 +2,6 @@ const baseUrl = "/api"
 export const commonApi = {
     nodeList: baseUrl + "/node",
     proxyList: (id: number, type: string) => baseUrl + `/node/${id}/${type}`,
-    proxyAll: baseUrl + "/node/all"
+    proxyAll: baseUrl + "/node/all",
+    nodeItem: (id: number) => baseUrl + `/node/${id}`,
 }

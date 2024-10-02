@@ -1,11 +1,12 @@
 import {ElMessageBox} from "element-plus";
-import l from "@/lib/languageLib.js";
+import l from "@/lib/languageLib";
+import type {ConfirmCallbackModel} from "@/model/confirmCallbackModel";
 
-function confirm(message, title, action={confirm: _=>_, cancel: _=>_, close: _=>_}) {
+function confirm(message: string, title: string, action: ConfirmCallbackModel) {
     ElMessageBox.confirm(message, title, {
         type: "info",
-        confirmButtonText: l("common.confirm"),
-        cancelButtonText: l("common.cancel")
+        confirmButtonText: "确定",
+        cancelButtonText: "取消"
     }).then(_action => {
         console.log(_action)
         if (_action === "confirm" && action.confirm) action.confirm()

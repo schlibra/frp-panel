@@ -152,4 +152,9 @@ class Api extends BaseController
             return jb(401, "验证失败");
         }
     }
+    public function deleteProxy(int $id): Json {
+        $result = (new Node)->where('id', $id)->findOrEmpty();
+        $res = request("delete", "/api/proxies?status=offline", $result);
+        return jb(data: $res->data);
+    }
 }

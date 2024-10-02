@@ -17,10 +17,12 @@ Route::get("/api/node/all", "Api/getAllProxy");
 Route::get("/api/node/:id/:type", "Api/getProxyList");
 Route::get("/api/node", "Api/getNodeList");
 Route::post("/api/auth", "Api/serverAuth");
+Route::delete("/api/node/:id", "Api/deleteProxy");
 
 Route::get("/", "Index");
 Route::get("/node", "Index");
 Route::get("/node/:id", "Index");
 Route::get("/node/:id/:type", "Index");
+
 
 Route::get("/assets/:file", "Index/assets");

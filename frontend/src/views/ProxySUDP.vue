@@ -50,7 +50,7 @@ function getList() {
   <h2>SUDP映射列表</h2>
   <el-form label-position="top">
     <el-row :gutter="16">
-      <el-col :span="12">
+      <el-col :span="8">
         <el-form-item label="节点名称">
           <el-select v-model="selectedId" @change="getDetail">
             <el-option label="请选择节点" value="0" disabled />
@@ -58,9 +58,14 @@ function getList() {
           </el-select>
         </el-form-item>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="8">
         <el-form-item label="节点地址">
           <el-text type="primary" v-if="nodeDetail">{{ nodeDetail.host }}</el-text>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="清理离线映射">
+          <el-button type="danger" @click="request.deleteProxy(id)">清理</el-button>
         </el-form-item>
       </el-col>
     </el-row>
